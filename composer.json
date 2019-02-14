@@ -1,0 +1,36 @@
+{
+    "name": "ekino/data-protection-bundle",
+    "type": "symfony-bundle",
+    "description": "Data protection bundle",
+    "keywords": ["data", "protection", "log", "encryption"],
+    "homepage": "https://github.com/ekino/EkinoDataProtectionBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rémi Marseille",
+            "email": "remi.marseille@ekino.com",
+            "homepage": "https://www.ekino.com"
+        }
+    ],
+    "require": {
+        "php":                          "^7.1",
+        "ext-json":                     "*",
+        "ext-openssl":                  "*",
+        "monolog/monolog":              "~1.24",
+        "symfony/config":               "~3.3|~4.0",
+        "symfony/dependency-injection": "~3.4.10|^4.0.10",
+        "symfony/http-kernel":          "~3.3|~4.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer":   "^2.12",
+        "phpstan/phpstan-phpunit":     "^0.11",
+        "phpunit/phpunit":             "^7.2",
+        "sensiolabs/security-checker": "^4.1"
+    },
+    "autoload": {
+        "psr-4": { "Ekino\\DataProtectionBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    }
+}
