@@ -48,7 +48,7 @@ class EkinoDataProtectionExtension extends Extension
     private function configureEncryptor(array $config, ContainerBuilder $container)
     {
         $container
-            ->findDefinition('ekino_data_protection.encryptor.default')
+            ->findDefinition('ekino_data_protection.encryptor')
             ->replaceArgument(0, $config['method'])
             ->replaceArgument(1, $config['secret']);
     }

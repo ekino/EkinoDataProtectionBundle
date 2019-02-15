@@ -10,8 +10,12 @@
             <argument />
         </service>
 
+        <service id="ekino_data_protection.encryptor" alias="ekino_data_protection.encryptor.default" />
+
+        <service id="Ekino\DataProtectionBundle\Encryptor\EncryptorInterface" alias="ekino_data_protection.encryptor" />
+
         <service id="ekino_data_protection.monolog.processor.gdpr" class="Ekino\DataProtectionBundle\Monolog\Processor\GdprProcessor" public="false">
-            <argument type="service" id="ekino_data_protection.encryptor.default" />
+            <argument type="service" id="ekino_data_protection.encryptor" />
 
             <tag name="monolog.processor" />
         </service>

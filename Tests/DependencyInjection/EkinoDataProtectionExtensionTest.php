@@ -79,7 +79,7 @@ class EkinoDataProtectionExtensionTest extends TestCase
         $this->containerBuilder
             ->expects($this->once())
             ->method('findDefinition')
-            ->with($this->equalTo('ekino_data_protection.encryptor.default'))
+            ->with($this->equalTo('ekino_data_protection.encryptor'))
             ->willReturn($encryptorDefinition);
 
         $this->extension->load([['encryptor' => ['method' => 'aes-256-xts', 'secret' => 'foo']]], $this->containerBuilder);
