@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="ekino_data_protection.encryptor.default" class="Ekino\DataProtectionBundle\Encryptor\Encryptor" public="false">
+            <argument />
+            <argument />
+        </service>
+
+        <service id="ekino_data_protection.monolog.processor.gdpr" class="Ekino\DataProtectionBundle\Monolog\Processor\GdprProcessor" public="false">
+            <argument type="service" id="ekino_data_protection.encryptor.default" />
+
+            <tag name="monolog.processor" />
+        </service>
+    </services>
+
+</container>
