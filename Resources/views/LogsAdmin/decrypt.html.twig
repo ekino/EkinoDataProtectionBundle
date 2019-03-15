@@ -1,0 +1,74 @@
+{% extends base_template %}
+{% trans_default_domain "EkinoDataProtectionBundle" %}
+
+{% block sonata_admin_content %}
+    {% block notice %}
+        {% include '@SonataCore/FlashMessage/render.html.twig' %}
+    {% endblock notice %}
+
+    {{ form_start(form) }}
+
+    {% if not form.vars.valid %}
+        <div class="callout callout-danger">
+            <h4>{{ 'admin.logs.decrypt.errors'|trans() }}</h4>
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h4 class="box-title">{{ 'admin.logs.title'|trans() }}</h4>
+                </div>
+                <div class="box-body">
+                    {{ form_row(form.content) }}
+                </div>
+            </div>
+            <div class="sonata-ba-form-actions well well-small form-actions">
+                <button type="submit" class="btn btn-success" name="btn_update_and_edit" formNoValidate>
+                    {{ 'admin.logs.decrypt'|trans() }}
+                </button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h4 class="box-title">{{ 'admin.logs.decrypt.result'|trans() }}</h4>
+                </div>
+                <div class="box-body">
+                    {% if results is not empty %}
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs" role="tablist">
+                                {% for key, result in results %}
+                                    <li class="{% if loop.first %}active{% endif %}">
+                                        <a href="#{{ key }}" class="changer-tab" aria-controls="{{ key }}" data-toggle="tab">
+                                            <i class="fa fa-exclamation-circle has-errors hide" aria-hidden="true"></i> {{ key }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="tab-content">
+                                {% for key, result in results %}
+                                    <div class="tab-pane fade in {% if loop.first %}active{% endif %}" id="{{ key }}">
+                                        <div class="box-body  container-fluid">
+                                            <div class="sonata-ba-collapsed-fields">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <pre>{{ result|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}</pre>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock sonata_admin_content %}
