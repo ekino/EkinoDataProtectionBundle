@@ -11,10 +11,17 @@
 
 namespace Ekino\DataProtectionBundle\DependencyInjection;
 
+use Ekino\DataProtectionBundle\Admin\LogsAdmin;
+use Ekino\DataProtectionBundle\Controller\LogsAdminController;
+use Ekino\DataProtectionBundle\Encryptor\EncryptorInterface;
+use Ekino\DataProtectionBundle\Form\Type\DecryptLogType;
+use Sonata\AdminBundle\SonataAdminBundle;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -31,7 +38,7 @@ class EkinoDataProtectionExtension extends Extension
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
         $this->configureEncryptor($config['encryptor'], $container);
@@ -39,17 +46,37 @@ class EkinoDataProtectionExtension extends Extension
         if (!$config['encrypt_logs']) {
             $container->removeDefinition('ekino_data_protection.monolog.processor.gdpr');
         }
+
+        $this->configureSonataAdmin($config['use_sonata_admin'], $container, $loader);
     }
 
     /**
      * @param array            $config
      * @param ContainerBuilder $container
      */
-    private function configureEncryptor(array $config, ContainerBuilder $container)
+    private function configureEncryptor(array $config, ContainerBuilder $container): void
     {
         $container
             ->findDefinition('ekino_data_protection.encryptor')
             ->replaceArgument(0, $config['method'])
             ->replaceArgument(1, $config['secret']);
+    }
+
+    /**
+     * @param bool             $useSonataAdmin
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader    $loader
+     *
+     * @throws \LogicException
+     */
+    private function configureSonataAdmin(bool $useSonataAdmin, ContainerBuilder $container, XmlFileLoader $loader): void
+    {
+        if ($useSonataAdmin) {
+            if (!class_exists(SonataAdminBundle::class)) {
+                throw new \LogicException('Please install sonata-project/admin-bundle or turn off use_sonata_admin');
+            }
+
+            $loader->load('sonata_admin.xml');
+        }
     }
 }

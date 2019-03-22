@@ -34,9 +34,9 @@ class EkinoDataProtectionExtensionTest extends TestCase
     private $containerBuilder;
 
     /**
-     * Initializes the tests.
+     * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extension        = new EkinoDataProtectionExtension();
         $this->containerBuilder = $this->createMock(ContainerBuilder::class);
@@ -113,6 +113,11 @@ class EkinoDataProtectionExtensionTest extends TestCase
         yield [[['encryptor' => ['method' => 'aes-256-xts']]],                  'The child node "secret" at path "ekino_data_protection.encryptor" must be configured.'];
         yield [[['encryptor' => ['method' => 'aes-256-xts', 'secret' => '']]],  'The path "ekino_data_protection.encryptor.secret" cannot contain an empty value, but got "".'];
         yield [[['encryptor' => ['secret' => 'foo'], 'encrypt_logs' => 'bar']], 'Invalid type for path "ekino_data_protection.encrypt_logs". Expected boolean, but got string.'];
+        yield [[[
+            'encryptor'        => ['secret' => 'foo'],
+            'encrypt_logs'     => true,
+            'use_sonata_admin' => 'bar',
+        ]], 'Invalid type for path "ekino_data_protection.use_sonata_admin". Expected boolean, but got string.'];
     }
 
     /**

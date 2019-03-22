@@ -40,6 +40,7 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->booleanNode('encrypt_logs')->defaultTrue()->end()
+                ->booleanNode('use_sonata_admin')->defaultFalse()->end()
             ->end()
         ;
 
