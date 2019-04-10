@@ -14,6 +14,12 @@
 
         <service id="Ekino\DataProtectionBundle\Encryptor\EncryptorInterface" alias="ekino_data_protection.encryptor" />
 
+        <service id="ekino_data_protection.dependency_injection.env_var_encrypted_processor" class="Ekino\DataProtectionBundle\DependencyInjection\EnvVarEncryptedProcessor" public="false">
+            <argument type="service" id="ekino_data_protection.encryptor" />
+
+            <tag name="container.env_var_processor" />
+        </service>
+
         <service id="ekino_data_protection.monolog.processor.gdpr" class="Ekino\DataProtectionBundle\Monolog\Processor\GdprProcessor" public="false">
             <argument type="service" id="ekino_data_protection.encryptor" />
 
