@@ -49,6 +49,7 @@ return PhpCsFixer\Config::create()
         ],
         'no_short_echo_tag' => true,
         'no_useless_else' => true,
+        'no_unused_imports' => true,
         'no_useless_return' => true,
         'ordered_imports' => true,
         'phpdoc_add_missing_param_annotation' => true,

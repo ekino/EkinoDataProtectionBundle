@@ -12,9 +12,10 @@
 namespace Ekino\DataProtectionBundle\Controller;
 
 use Ekino\DataProtectionBundle\Encryptor\EncryptorInterface;
-use Ekino\DataProtectionBundle\Form\Type\DecryptLogType;
+use Ekino\DataProtectionBundle\Form\Type\LogType;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class LogsAdminController.
@@ -39,26 +40,21 @@ class LogsAdminController extends Controller
     }
 
     /**
-     * {@inheritdoc}
+     * @param Request $request
+     *
+     * @return Response
      */
-    public function decryptAction(Request $request)
+    public function decryptEncryptAction(Request $request): Response
     {
-        $form    = $this->createForm(DecryptLogType::class);
+        $form    = $this->createForm(LogType::class);
         $results = [];
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $content = $form->getData()->getContent();
-            preg_match_all('#"private_(.*?)":"(.[^"]*)"#m', $content, $matches, PREG_SET_ORDER);
-
-            if (!empty($matches)) {
-                foreach ($matches as $index => $match) {
-                    $results[sprintf('%s_%d', $match[1], $index + 1)] = json_decode($this->encryptor->decrypt($match[2]), true);
-                }
-            } else {
-                $results['result'] = json_decode($this->encryptor->decrypt($content), true);
-            }
+            $log     = $form->getData();
+            $content = $log->getContent();
+            $results = $log->isDecryptAction() ? $this->getDecryptedResults($content) : $this->getEncryptedResult($content);
         }
 
         return $this->renderWithExtraParams('@EkinoDataProtection/LogsAdmin/decrypt.html.twig', [
@@ -66,5 +62,36 @@ class LogsAdminController extends Controller
             'results' => $results,
             'form'    => $form->createView(),
         ], null);
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return array
+     */
+    private function getDecryptedResults(string $content): array
+    {
+        $results = [];
+        preg_match_all('#"private_(.*?)":"(.[^"]*)"#m', $content, $matches, PREG_SET_ORDER);
+
+        if (!empty($matches)) {
+            foreach ($matches as $index => $match) {
+                $results[sprintf('%s_%d', $match[1], $index + 1)] = json_decode($this->encryptor->decrypt($match[2]), true);
+            }
+        } else {
+            $results['result'] = json_decode($this->encryptor->decrypt($content), true);
+        }
+
+        return $results;
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return array
+     */
+    private function getEncryptedResult(string $content): array
+    {
+        return ['result' => $this->encryptor->encrypt(json_encode($content))];
     }
 }

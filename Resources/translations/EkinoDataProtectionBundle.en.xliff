@@ -2,17 +2,33 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" datatype="plaintext" original="">
         <body>
+            <trans-unit id="admin.logs.action">
+                <source>admin.logs.action</source>
+                <target>Action</target>
+            </trans-unit>
+            <trans-unit id="admin.logs.content">
+                <source>admin.logs.content</source>
+                <target>Content</target>
+            </trans-unit>
             <trans-unit id="admin.logs.decrypt">
                 <source>admin.logs.decrypt</source>
                 <target>Decrypt</target>
             </trans-unit>
-            <trans-unit id="admin.logs.decrypt.content">
-                <source>admin.logs.decrypt.content</source>
-                <target>Content</target>
+            <trans-unit id="admin.logs.encrypt">
+                <source>admin.logs.encrypt</source>
+                <target>Encrypt</target>
             </trans-unit>
-            <trans-unit id="admin.logs.decrypt.result">
-                <source>admin.logs.decrypt.result</source>
-                <target>Decrypted content</target>
+            <trans-unit id="admin.logs.errors">
+                <source>admin.logs.errors</source>
+                <target>Errors</target>
+            </trans-unit>
+            <trans-unit id="admin.logs.result">
+                <source>admin.logs.result</source>
+                <target>Result</target>
+            </trans-unit>
+            <trans-unit id="admin.logs.submit">
+                <source>admin.logs.submit</source>
+                <target>Encrypt/Decrypt</target>
             </trans-unit>
             <trans-unit id="admin.logs.title">
                 <source>admin.logs.title</source>

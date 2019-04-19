@@ -11,17 +11,11 @@
 
 namespace Ekino\DataProtectionBundle\DependencyInjection;
 
-use Ekino\DataProtectionBundle\Admin\LogsAdmin;
-use Ekino\DataProtectionBundle\Controller\LogsAdminController;
-use Ekino\DataProtectionBundle\Encryptor\EncryptorInterface;
-use Ekino\DataProtectionBundle\Form\Type\DecryptLogType;
 use Sonata\AdminBundle\SonataAdminBundle;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * This is the class that loads and manages your bundle configuration.

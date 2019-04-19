@@ -36,6 +36,6 @@ class LogsAdmin extends AbstractAdmin
      */
     protected function configureRoutes(RouteCollection $collection)
     {
-        $collection->add('decrypt', 'decrypt', [], [], [], '', [], ['GET', 'POST']);
+        $collection->add('decrypt_encrypt', 'decrypt-encrypt', [], [], [], '', [], ['GET', 'POST']);
     }
 }

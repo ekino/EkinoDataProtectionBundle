@@ -13,7 +13,6 @@ namespace Ekino\DataProtectionBundle\Tests\Monolog\Processor;
 
 use Ekino\DataProtectionBundle\Encryptor\EncryptorInterface;
 use Ekino\DataProtectionBundle\Monolog\Processor\GdprProcessor;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**

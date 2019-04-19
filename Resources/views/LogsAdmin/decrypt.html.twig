@@ -10,7 +10,7 @@
 
     {% if not form.vars.valid %}
         <div class="callout callout-danger">
-            <h4>{{ 'admin.logs.decrypt.errors'|trans() }}</h4>
+            <h4>{{ 'admin.logs.errors'|trans() }}</h4>
             {{ form_errors(form) }}
         </div>
     {% endif %}
@@ -23,11 +23,12 @@
                 </div>
                 <div class="box-body">
                     {{ form_row(form.content) }}
+                    {{ form_row(form.action) }}
                 </div>
             </div>
             <div class="sonata-ba-form-actions well well-small form-actions">
                 <button type="submit" class="btn btn-success" name="btn_update_and_edit" formNoValidate>
-                    {{ 'admin.logs.decrypt'|trans() }}
+                    {{ 'admin.logs.submit'|trans() }}
                 </button>
             </div>
             {{ form_end(form) }}
@@ -35,7 +36,7 @@
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h4 class="box-title">{{ 'admin.logs.decrypt.result'|trans() }}</h4>
+                    <h4 class="box-title">{{ 'admin.logs.result'|trans() }}</h4>
                 </div>
                 <div class="box-body">
                     {% if results is not empty %}
@@ -56,10 +57,9 @@
                                             <div class="sonata-ba-collapsed-fields">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <pre>{{ result|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}</pre>
+                                                        <pre style="word-break: break-word; overflow-x: auto; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">{{ result|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
