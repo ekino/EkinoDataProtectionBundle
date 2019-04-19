@@ -13,33 +13,18 @@ namespace Ekino\DataProtectionBundle\Form\Type;
 
 use Ekino\DataProtectionBundle\Form\DataClass\Log;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Class DecryptLogType.
+ * Class LogType.
  *
  * @author Benoit Mazière <benoit.maziere@ekino.com>
  */
-class DecryptLogType extends AbstractType
+class LogType extends AbstractType
 {
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
-     * DecryptLogType constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -48,9 +33,18 @@ class DecryptLogType extends AbstractType
         $builder
             ->add('content', TextareaType::class, [
                 'required' => true,
-                'label'    => $this->translator->trans('admin.logs.decrypt.content', [], 'EkinoDataProtectionBundle'),
+                'label'    => 'admin.logs.content',
                 'attr'     => ['class' => 'form-control', 'rows' => 20],
             ])
+            ->add('action', ChoiceType::class, [
+                'required' => true,
+                'label'    => 'admin.logs.action',
+                'choices'  => [
+                    'admin.logs.decrypt' => Log::ACTION_DECRYPT,
+                    'admin.logs.encrypt' => Log::ACTION_ENCRYPT,
+                ],
+            ])
+
         ;
     }
 
@@ -60,7 +54,8 @@ class DecryptLogType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Log::class,
+            'data_class'         => Log::class,
+            'translation_domain' => 'EkinoDataProtectionBundle',
         ]);
     }
 }

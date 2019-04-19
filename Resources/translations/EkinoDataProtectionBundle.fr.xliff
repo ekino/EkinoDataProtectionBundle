@@ -2,17 +2,33 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" datatype="plaintext" original="EkinoDataProtectionBundle.en.xliff">
         <body>
+            <trans-unit id="admin.logs.action">
+                <source>admin.logs.action</source>
+                <target>Action</target>
+            </trans-unit>
+            <trans-unit id="admin.logs.content">
+                <source>admin.logs.content</source>
+                <target>Contenu</target>
+            </trans-unit>
             <trans-unit id="admin.logs.decrypt">
                 <source>admin.logs.decrypt</source>
                 <target>Déchiffrer</target>
             </trans-unit>
-            <trans-unit id="admin.logs.decrypt.content">
-                <source>admin.logs.decrypt.content</source>
-                <target>Contenu</target>
+            <trans-unit id="admin.logs.encrypt">
+                <source>admin.logs.encrypt</source>
+                <target>Chiffrer</target>
             </trans-unit>
-            <trans-unit id="admin.logs.decrypt.result">
-                <source>admin.logs.decrypt.result</source>
-                <target>Contenu déchiffré</target>
+            <trans-unit id="admin.logs.errors">
+                <source>admin.logs.errors</source>
+                <target>Erreurs</target>
+            </trans-unit>
+            <trans-unit id="admin.logs.result">
+                <source>admin.logs.result</source>
+                <target>Résultat</target>
+            </trans-unit>
+            <trans-unit id="admin.logs.submit">
+                <source>admin.logs.submit</source>
+                <target>Chiffrer/Déchiffrer</target>
             </trans-unit>
             <trans-unit id="admin.logs.title">
                 <source>admin.logs.title</source>

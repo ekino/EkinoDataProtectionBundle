@@ -12,38 +12,31 @@
 namespace Ekino\DataProtectionBundle\Tests\Form\Type;
 
 use Ekino\DataProtectionBundle\Form\DataClass\Log;
-use Ekino\DataProtectionBundle\Form\Type\DecryptLogType;
-use PHPUnit\Framework\MockObject\MockObject;
+use Ekino\DataProtectionBundle\Form\Type\LogType;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Class DecryptLogTypeTest.
+ * Class LogTypeTest.
  *
  * @author Benoit Mazière <benoit.maziere@ekino.com>
  */
-class DecryptLogTypeTest extends TestCase
+class LogTypeTest extends TestCase
 {
     /**
-     * @var DecryptLogType
+     * @var LogType
      */
     private $formType;
-
-    /**
-     * @var TranslatorInterface|MockObject
-     */
-    private $translator;
 
     /**
      * {@inheritdoc}
      */
     protected function setUp(): void
     {
-        $this->translator = $this->createMock(TranslatorInterface::class);
-        $this->formType   = new DecryptLogType($this->translator);
+        $this->formType = new LogType();
     }
 
     /**
@@ -52,7 +45,10 @@ class DecryptLogTypeTest extends TestCase
     public function testConfigureOptions(): void
     {
         $optionResolver = $this->createMock(OptionsResolver::class);
-        $optionResolver->expects($this->once())->method('setDefaults')->with(['data_class' => Log::class,]);
+        $optionResolver->expects($this->once())->method('setDefaults')->with([
+            'data_class'         => Log::class,
+            'translation_domain' => 'EkinoDataProtectionBundle',
+        ]);
 
         $this->formType->configureOptions($optionResolver);
     }
@@ -62,16 +58,26 @@ class DecryptLogTypeTest extends TestCase
      */
     public function testBuildForm(): void
     {
-        $this->translator->expects($this->once())
-            ->method('trans')
-            ->with('admin.logs.decrypt.content', [], 'EkinoDataProtectionBundle')
-            ->willReturn('foo');
         $formBuilder = $this->createMock(FormBuilderInterface::class);
-        $formBuilder->expects($this->once())->method('add')->with('content', TextareaType::class, [
-            'required' => true,
-            'label'    => 'foo',
-            'attr'     => ['class' => 'form-control', 'rows' => 20],
-        ]);
+        $formBuilder->expects($this->exactly(2))->method('add')->withConsecutive(
+            [
+                'content', TextareaType::class, [
+                    'required' => true,
+                    'label'    => 'admin.logs.content',
+                    'attr'     => ['class' => 'form-control', 'rows' => 20],
+                ]
+            ],
+            [
+                'action', ChoiceType::class, [
+                    'required' => true,
+                    'label'    => 'admin.logs.action',
+                    'choices'  => [
+                        'admin.logs.decrypt' => Log::ACTION_DECRYPT,
+                        'admin.logs.encrypt' => Log::ACTION_ENCRYPT,
+                    ],
+                ]
+            ]
+        )->willReturnSelf();
 
         $this->formType->buildForm($formBuilder, []);
     }

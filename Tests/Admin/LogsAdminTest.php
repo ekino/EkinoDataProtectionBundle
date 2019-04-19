@@ -45,7 +45,7 @@ class LogsAdminTest extends TestCase
         $routeCollection = $this->createMock(RouteCollection::class);
         $routeCollection->expects($this->once())
             ->method('add')
-            ->with('decrypt', 'decrypt', [], [], [], '', [], ['GET', 'POST']);
+            ->with('decrypt_encrypt', 'decrypt-encrypt', [], [], [], '', [], ['GET', 'POST']);
 
         $exec = new ReflectionMethod($this->admin, 'configureRoutes');
         $exec->setAccessible(true);

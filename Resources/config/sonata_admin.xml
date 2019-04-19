@@ -17,8 +17,7 @@
             <tag name="controller.service_arguments" />
         </service>
 
-        <service id="Ekino\DataProtectionBundle\Form\Type\DecryptLogType">
-            <argument type="service" id="translator" />
+        <service id="Ekino\DataProtectionBundle\Form\Type\LogType">
             <tag name="form.type" />
         </service>
     </services>
