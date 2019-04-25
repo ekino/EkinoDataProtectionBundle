@@ -36,10 +36,12 @@ class GdprProcessorTest extends TestCase
         $processor = new GdprProcessor($encryptor);
 
         $this->assertSame(['context' => [
+            0              => 'numeric index',
             'foo'          => 'bar',
             'private_data' => 'encrypted_data',
         ]], $processor->__invoke([
             'context' => [
+                0              => 'numeric index',
                 'foo'          => 'bar',
                 'private_data' => [
                     'foo' => 'baz',
