@@ -1,5 +1,5 @@
 .PHONY: app-composer-validate app-cs-check app-cs-fix app-install app-security-check app-static-analysis app-test \
-app-test-with-code-coverage
+app-test-with-code-coverage ci
 
 default: help
 
@@ -29,3 +29,6 @@ app-test: ## to run unit tests
 
 app-test-with-code-coverage: ## to run unit tests with code-coverage
 	vendor/bin/phpunit --coverage-text --coverage-clover=build/phpunit/clover.xml --log-junit=build/phpunit/junit.xml --coverage-html=build/phpunit/html --colors=never
+
+ci: ## to run checks during ci
+	make app-composer-validate app-test app-static-analysis app-cs-check app-security-check

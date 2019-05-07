@@ -1,3 +1,7 @@
+branches:
+  only:
+    - master
+
 language: php
 
 php:
@@ -12,13 +16,45 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
-before_install: composer self-update
+env:
+  global:
+    - TARGET=ci
 
-install: make app-install
+matrix:
+  fast_finish: true
+  include:
+    - php: '7.3'
+      env: SYMFONY=3.4.*
+    - php: '7.3'
+      env: SYMFONY=^4.2
+    - php: '7.3'
+      env: SYMFONY_DEPRECATIONS_HELPER=0
+    - php: '7.2'
+      env: SYMFONY=3.4.*
+    - php: '7.2'
+      env: SYMFONY=^4.2
+    - php: '7.2'
+      env: SYMFONY_DEPRECATIONS_HELPER=0
+    - php: '7.1'
+      env: SYMFONY=3.4.*
+    - php: '7.1'
+      env: SYMFONY=^4.2
+    - php: '7.1'
+      env: SYMFONY_DEPRECATIONS_HELPER=0
+  allow_failures:
+    - php: nightly
+    - php: '7.3'
+    - env: SYMFONY_DEPRECATIONS_HELPER=0
+
+before_install:
+  - composer self-update
+  - if [ -x .travis/before_install_${TARGET}.sh ]; then .travis/before_install_${TARGET}.sh; fi;
+
+install:
+  - if [ -x .travis/install_${TARGET}.sh ]; then .travis/install_${TARGET}.sh; fi;
 
 script:
-  - make app-composer-validate
-  - make app-test-with-code-coverage
-  - make app-static-analysis
-  - make app-cs-check
-  - make app-security-check
+  - make $TARGET
+
+after_success:
+  - if [ -x .travis/after_success_${TARGET}.sh ]; then .travis/after_success_${TARGET}.sh; fi;
