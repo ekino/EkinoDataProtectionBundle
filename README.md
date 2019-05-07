@@ -1,6 +1,9 @@
 EkinoDataProtectionBundle
 =========================
 
+[![Build Status](https://travis-ci.org/ekino/EkinoDataProtectionBundle.svg?branch=master)](https://travis-ci.org/ekino/EkinoDataProtectionBundle)
+[![Coverage Status](https://coveralls.io/repos/ekino/EkinoDataProtectionBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/ekino/EkinoDataProtectionBundle?branch=master)
+
 **This is a work in progress, so if you'd like something implemented please
 feel free to ask for it or contribute to help us!**
 
