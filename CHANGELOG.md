@@ -10,3 +10,4 @@ master
 * Add optional sonata admin to encrypt content
 * Enable strict typing
 * GdprProcessor: cast context keys to string to avoid FatalThrowableError with numeric keys
+* Add TravisCI matrix
