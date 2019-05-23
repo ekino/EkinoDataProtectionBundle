@@ -1,11 +1,13 @@
 EkinoDataProtectionBundle
 =========================
 
+[![Latest Stable Version](https://poser.pugx.org/ekino/data-protection-bundle/v/stable)](https://packagist.org/packages/ekino/data-protection-bundle)
 [![Build Status](https://travis-ci.org/ekino/EkinoDataProtectionBundle.svg?branch=master)](https://travis-ci.org/ekino/EkinoDataProtectionBundle)
 [![Coverage Status](https://coveralls.io/repos/ekino/EkinoDataProtectionBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/ekino/EkinoDataProtectionBundle?branch=master)
+[![Total Downloads](https://poser.pugx.org/ekino/data-protection-bundle/downloads)](https://packagist.org/packages/ekino/data-protection-bundle)
 
-**This is a work in progress, so if you'd like something implemented please
-feel free to ask for it or contribute to help us!**
+This is a *work in progress*, so if you'd like something implemented please
+feel free to ask for it or contribute to help us!
 
 # Purpose
 
