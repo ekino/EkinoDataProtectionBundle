@@ -13,3 +13,4 @@ master
 * Add TravisCI matrix
 * Fix Coveralls tool export
 * Fix badges
+* Disable audit of Log (cf. https://sonata-project.org/bundles/doctrine-orm-admin/master/doc/reference/audit.html)

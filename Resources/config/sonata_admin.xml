@@ -9,7 +9,8 @@
             <argument />
             <argument />
             <argument>Ekino\DataProtectionBundle\Controller\LogsAdminController</argument>
-            <tag name="sonata.admin" manager_type="orm" label="Logs" />
+            <tag name="sonata.admin" manager_type="orm" label="Logs" audit="false" />
+            <!-- disable audit https://sonata-project.org/bundles/doctrine-orm-admin/master/doc/reference/audit.html -->
         </service>
 
         <service id="Ekino\DataProtectionBundle\Controller\LogsAdminController">
