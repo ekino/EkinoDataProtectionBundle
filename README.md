@@ -104,7 +104,7 @@ ekino_data_protection:
     use_sonata_admin: true
 ````
 
-Then, you will be able to add the following route `admin_app_logs_decrypt` into 
+Then, you will be able to add the following route `admin_app_logs_decrypt_encrypt` into 
 your menu for example. This route provides a form with only one field in which you
 can fill in only the encrypted part of the log or a full text containing several logs.
 In case of several encrypted logs, each decrypted result will be displayed in a 
