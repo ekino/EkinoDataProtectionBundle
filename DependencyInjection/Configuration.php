@@ -28,8 +28,14 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('ekino_data_protection');
+        // Keep compatibility with symfony/config < 4.2
+        if (!method_exists(TreeBuilder::class, 'getRootNode')) {
+            $treeBuilder = new TreeBuilder();
+            $rootNode    = $treeBuilder->root('ekino_data_protection');
+        } else {
+            $treeBuilder = new TreeBuilder('ekino_data_protection');
+            $rootNode    = $treeBuilder->getRootNode();
+        }
 
         $rootNode
             ->children()
