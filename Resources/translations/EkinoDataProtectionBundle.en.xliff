@@ -34,6 +34,14 @@
                 <source>admin.logs.title</source>
                 <target>Logs</target>
             </trans-unit>
+            <trans-unit id="admin.logs.decrypt.error">
+                <source>admin.logs.decrypt.error</source>
+                <target>An error occurred during the decryption, please check the content you submitted.</target>
+            </trans-unit>
+            <trans-unit id="admin.logs.encrypt.error">
+                <source>admin.logs.encrypt.error</source>
+                <target>An error occurred during the encryption, please check the content you submitted.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
