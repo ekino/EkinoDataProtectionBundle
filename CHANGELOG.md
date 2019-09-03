@@ -4,6 +4,9 @@ CHANGELOG
 master
 ------
 
+v1.0.0
+------
+
 * Add monolog processor to encrypt logs
 * Add optional sonata admin to decrypt logs
 * Add processor to decrypt secrets at runtime
@@ -15,3 +18,4 @@ master
 * Fix badges
 * Disable audit of Log (cf. https://sonata-project.org/bundles/doctrine-orm-admin/master/doc/reference/audit.html)
 * Remove deprecation about configuration tree builder without a root node
+* Throw EncryptionException when content can't be encrypted/decrypted and display flash message in admin
