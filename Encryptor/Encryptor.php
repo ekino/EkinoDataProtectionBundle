@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Ekino\DataProtectionBundle\Encryptor;
 
+use Ekino\DataProtectionBundle\Exception\EncryptionException;
+
 /**
  * Encrypt data using the given cipher method.
  *
@@ -52,6 +54,10 @@ class Encryptor implements EncryptorInterface
         $iv         = openssl_random_pseudo_bytes($ivSize);
         $cipherText = openssl_encrypt($data, $this->method, $this->secret, OPENSSL_RAW_DATA, $iv);
 
+        if ($cipherText === false) {
+            throw new EncryptionException('Unexpected failure in openssl_encrypt.');
+        }
+
         return base64_encode($iv.$cipherText);
     }
 
@@ -64,7 +70,12 @@ class Encryptor implements EncryptorInterface
         $ivSize     = openssl_cipher_iv_length($this->method);
         $iv         = mb_substr($data, 0, $ivSize, '8bit');
         $cipherText = mb_substr($data, $ivSize, null, '8bit');
+        $decrypt    = openssl_decrypt($cipherText, $this->method, $this->secret, OPENSSL_RAW_DATA, $iv);
 
-        return openssl_decrypt($cipherText, $this->method, $this->secret, OPENSSL_RAW_DATA, $iv);
+        if ($decrypt === false) {
+            throw new EncryptionException('Unexpected failure in openssl_decrypt.');
+        }
+
+        return $decrypt;
     }
 }

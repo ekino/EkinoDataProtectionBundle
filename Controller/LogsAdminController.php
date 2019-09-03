@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Ekino\DataProtectionBundle\Controller;
 
 use Ekino\DataProtectionBundle\Encryptor\EncryptorInterface;
+use Ekino\DataProtectionBundle\Exception\EncryptionException;
 use Ekino\DataProtectionBundle\Form\Type\LogType;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,7 +57,13 @@ class LogsAdminController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $log     = $form->getData();
             $content = $log->getContent();
-            $results = $log->isDecryptAction() ? $this->getDecryptedResults($content) : $this->getEncryptedResult($content);
+            try {
+                $results = $log->isDecryptAction() ? $this->getDecryptedResults($content) : $this->getEncryptedResult($content);
+            } catch (EncryptionException $e) {
+                $message = $log->isDecryptAction() ? 'admin.logs.decrypt.error' : 'admin.logs.encrypt.error';
+
+                $this->addFlash('error', $this->trans($message, [], 'EkinoDataProtectionBundle'));
+            }
         }
 
         return $this->renderWithExtraParams('@EkinoDataProtection/LogsAdmin/decrypt.html.twig', [

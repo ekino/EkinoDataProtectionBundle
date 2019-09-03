@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Ekino\DataProtectionBundle\Encryptor;
 
+use Ekino\DataProtectionBundle\Exception\EncryptionException;
+
 /**
  * @author Rémi Marseille <remi.marseille@ekino.com>
  */
@@ -21,12 +23,16 @@ interface EncryptorInterface
     /**
      * @param string $data
      *
+     * @throws EncryptionException
+     *
      * @return string
      */
     public function encrypt(string $data): string;
 
     /**
      * @param string $data
+     *
+     * @throws EncryptionException
      *
      * @return string
      */
