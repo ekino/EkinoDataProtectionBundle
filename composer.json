@@ -16,7 +16,7 @@
         "php":                          "^7.1",
         "ext-json":                     "*",
         "ext-openssl":                  "*",
-        "monolog/monolog":              "~1.24",
+        "monolog/monolog":              "~1.24|~2.0",
         "symfony/config":               "~3.3|~4.0",
         "symfony/dependency-injection": "~3.4.10|^4.0.10",
         "symfony/form":                 "~3.3|~4.0",
