@@ -4,6 +4,8 @@ CHANGELOG
 master
 ------
 
+* Allow monolog/monolog ~2.0
+
 v1.0.0
 ------
 
