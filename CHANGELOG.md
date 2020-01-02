@@ -4,6 +4,11 @@ CHANGELOG
 master
 ------
 
+* todo...
+
+v1.1.0
+------
+
 * Allow monolog/monolog ~2.0
 
 v1.0.0
