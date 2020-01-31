@@ -6,6 +6,9 @@ master
 
 * Improve message in case of encryption error
 * Add command to encrypt secrets
+* Drop support for PHP 7.1
+* Add PHP 7.4 in CI
+* Upgrade PhpUnit to 8
 
 v1.1.0
 ------

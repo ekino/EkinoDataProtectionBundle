@@ -59,12 +59,11 @@ class EnvVarEncryptedProcessorTest extends TestCase
 
     /**
      * Asserts getEnv throws an exception with wrong prefix.
-     *
-     * @expectedException        RuntimeException
-     * @expectedExceptionMessage Unsupported env var prefix "foo".
      */
     public function testGetEnvThrowException(): void
     {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Unsupported env var prefix "foo".');
         $this->processor->getEnv('foo', 'DATABASE_URL', function () {});
     }
 
