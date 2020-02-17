@@ -14,6 +14,12 @@
 
         <service id="Ekino\DataProtectionBundle\Encryptor\EncryptorInterface" alias="ekino_data_protection.encryptor" />
 
+        <service id="ekino_data_protection.command.encryptor" class="Ekino\DataProtectionBundle\Command\EncryptCommand" public="false">
+            <argument />
+            <argument />
+            <tag name="console.command" command="ekino-data-protection:encrypt"/>
+        </service>
+
         <service id="ekino_data_protection.dependency_injection.env_var_encrypted_processor" class="Ekino\DataProtectionBundle\DependencyInjection\EnvVarEncryptedProcessor" public="false">
             <argument type="service" id="ekino_data_protection.encryptor" />
 

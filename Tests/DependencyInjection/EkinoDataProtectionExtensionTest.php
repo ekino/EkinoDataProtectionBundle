@@ -70,18 +70,20 @@ class EkinoDataProtectionExtensionTest extends TestCase
     {
         $encryptorDefinition = $this->createMockDefinition();
         $encryptorDefinition
-            ->expects($this->exactly(2))
+            ->expects($this->exactly(4))
             ->method('replaceArgument')
             ->withConsecutive(
+                [0, 'aes-256-xts'],
+                [1, 'foo'],
                 [0, 'aes-256-xts'],
                 [1, 'foo']
             )
             ->willReturnSelf();
 
         $this->containerBuilder
-            ->expects($this->once())
+            ->expects($this->exactly(2))
             ->method('findDefinition')
-            ->with($this->equalTo('ekino_data_protection.encryptor'))
+            ->withConsecutive([$this->equalTo('ekino_data_protection.encryptor')],[$this->equalTo('ekino_data_protection.command.encryptor')])
             ->willReturn($encryptorDefinition);
 
         $this->extension->load([['encryptor' => ['method' => 'aes-256-xts', 'secret' => 'foo']]], $this->containerBuilder);
@@ -97,9 +99,9 @@ class EkinoDataProtectionExtensionTest extends TestCase
     public function testEncryptLogsEnabled(bool $enabled): void
     {
         $definition = $this->createMockDefinition();
-        $definition->expects($this->exactly(2))->method('replaceArgument')->willReturnSelf();
+        $definition->expects($this->exactly(4))->method('replaceArgument')->willReturnSelf();
 
-        $this->containerBuilder->expects($this->once())->method('findDefinition')->willReturn($definition);
+        $this->containerBuilder->expects($this->exactly(2))->method('findDefinition')->willReturn($definition);
         $this->containerBuilder->expects($enabled ? $this->never() : $this->once())->method('removeDefinition')->with($this->equalTo('ekino_data_protection.monolog.processor.gdpr'));
 
         $this->extension->load([['encryptor' => ['secret' => 'foo'], 'encrypt_logs' => $enabled]], $this->containerBuilder);

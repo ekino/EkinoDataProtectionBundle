@@ -5,6 +5,7 @@ master
 ------
 
 * Improve message in case of encryption error
+* Add command to encrypt secrets
 
 v1.1.0
 ------

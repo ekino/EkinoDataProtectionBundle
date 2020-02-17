@@ -132,6 +132,12 @@ doctrine:
         url: '%env(ekino_encrypted:DATABASE_URL)%'
 ```
 
+## Encrypt texts using the CLI
+
+To encrypt a text, run the following command:
+
+`bin/console ekino-data-protection:encrypt myText`, optionally with `--secret mySecret` and/or `--method myCipher`
+
 [1]: https://php.net/manual/en/function.openssl-get-cipher-methods.php
 [2]: https://github.com/Seldaek/monolog
 [3]: https://github.com/sonata-project/SonataAdminBundle
