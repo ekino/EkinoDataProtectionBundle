@@ -66,7 +66,7 @@ class EncryptorTest extends TestCase
         self::$encryptData = false;
 
         $this->expectException(EncryptionException::class);
-        $this->expectExceptionMessage('Unexpected failure in openssl_encrypt.');
+        $this->expectExceptionMessage('Unexpected failure in openssl_encrypt: ');
 
         $encryptedData = $this->encryptor->encrypt($this->rawData);
     }
@@ -77,7 +77,7 @@ class EncryptorTest extends TestCase
     public function testDecryptNok(): void
     {
         $this->expectException(EncryptionException::class);
-        $this->expectExceptionMessage('Unexpected failure in openssl_decrypt.');
+        $this->expectExceptionMessage('Unexpected failure in openssl_decrypt: ');
 
         $this->encryptor->decrypt('dummy-example-for-testing-purpose');
     }

@@ -4,7 +4,7 @@ CHANGELOG
 master
 ------
 
-* todo...
+* Improve message in case of encryption error
 
 v1.1.0
 ------
