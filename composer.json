@@ -16,6 +16,7 @@
         "php":                          "^7.2",
         "ext-json":                     "*",
         "ext-openssl":                  "*",
+        "doctrine/orm":                 "^2.6",
         "monolog/monolog":              "~1.24|~2.0",
         "symfony/config":               "~3.3|~4.4",
         "symfony/console":              "~3.3|~4.4",

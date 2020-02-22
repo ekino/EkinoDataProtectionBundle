@@ -138,6 +138,51 @@ To encrypt a text, run the following command:
 
 `bin/console ekino-data-protection:encrypt myText`, optionally with `--secret mySecret` and/or `--method myCipher`
 
+## Anonymize your database
+
+This bundle provides an easy way to anonymize your database. This feature can be useful when you get down some 
+production database to your staged environments for example and you care about who access to real client/user data
+according to GDPR reglementation.
+
+Efficiency is also very important when you need to anonymize big volumetry. This bundle aims to generate at most one 
+query per table.
+
+### Annotation configuration
+
+This bundle provides 2 annotations:
+
+`@AnonyizedEntity()` to specify which entity should be considered to be anonymized
+
+- action option: anonymize(default)|truncate
+- exceptWhereClause option: to keep some data unchanged, will be added as WHERE clause at the end of generated query
+
+
+`@AnonyizedProperty()` to specify which entity field should be considered to be anonymized
+
+- type option: static(default)|composed|expression
+
+    - static type: same value will be applied everywhere
+    - composed type: a string composed of an another `<field>` (ex : test-<id>@test.com) 
+    - expression type: a valid expression where another field can be used or not (ex : CONCAT(FLOOR(1 + (RAND() * 1000)), id))
+
+- value option: string representing static|composed|expression format
+
+### Process
+
+The command for anonymizing will :
+- gather anonymizing configuration by reading annotation and build AnonymizedMetadata
+- validate AnonymizedMetadata (see `Ekino\DataProtectionBundle\Meta\AnonymizedMetadataValidator`)
+- build queries
+- execute queries
+
+### Usage
+
+To anonymize your database, run the following command:
+
+`bin/console ekino-data-protection:anonymize` will display the queries that have been generated
+`bin/console ekino-data-protection:anonymize --force` will display & execute the queries that have been generated
+
+
 [1]: https://php.net/manual/en/function.openssl-get-cipher-methods.php
 [2]: https://github.com/Seldaek/monolog
 [3]: https://github.com/sonata-project/SonataAdminBundle

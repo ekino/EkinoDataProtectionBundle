@@ -9,6 +9,7 @@ master
 * Drop support for PHP 7.1
 * Add PHP 7.4 in CI
 * Upgrade PhpUnit to 8
+* Add command to anonymize database through annotation configuration
 
 v1.1.0
 ------
