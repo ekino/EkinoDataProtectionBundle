@@ -38,6 +38,7 @@ class EkinoDataProtectionExtension extends Extension
         $loader->load('services.xml');
 
         $this->configureEncryptor($config['encryptor'], $container);
+        $this->configureEncryptCommand($config['encryptor'], $container);
 
         if (!$config['encrypt_logs']) {
             $container->removeDefinition('ekino_data_protection.monolog.processor.gdpr');
@@ -54,6 +55,18 @@ class EkinoDataProtectionExtension extends Extension
     {
         $container
             ->findDefinition('ekino_data_protection.encryptor')
+            ->replaceArgument(0, $config['method'])
+            ->replaceArgument(1, $config['secret']);
+    }
+
+    /**
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    private function configureEncryptCommand(array $config, ContainerBuilder $container): void
+    {
+        $container
+            ->findDefinition('ekino_data_protection.command.encryptor')
             ->replaceArgument(0, $config['method'])
             ->replaceArgument(1, $config['secret']);
     }
