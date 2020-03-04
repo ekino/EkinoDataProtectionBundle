@@ -31,6 +31,24 @@
 
             <tag name="monolog.processor" />
         </service>
+
+        <service id="ekino_data_protection.anonymized_metadata.builder" class="Ekino\DataProtectionBundle\Meta\AnonymizedMetadataBuilder" public="false">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="Doctrine\Common\Annotations\Reader" />
+        </service>
+
+        <service id="ekino_data_protection.anonymized_metadata.validator" class="Ekino\DataProtectionBundle\Meta\AnonymizedMetadataValidator" public="false">
+        </service>
+
+        <service id="ekino_data_protection.anonymized.query_builder" class="Ekino\DataProtectionBundle\QueryBuilder\AnonymizedQueryBuilder" public="false">
+        </service>
+
+        <service id="ekino_data_protection.anonymize.command" class="Ekino\DataProtectionBundle\Command\AnonymizeDataCommand" public="true">
+            <argument type="service" id="ekino_data_protection.anonymized_metadata.builder" />
+            <argument type="service" id="ekino_data_protection.anonymized_metadata.validator" />
+            <argument type="service" id="ekino_data_protection.anonymized.query_builder" />
+            <tag name="console.command" command="ekino-data-protection:anonymize" />
+        </service>
     </services>
 
 </container>
