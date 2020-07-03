@@ -18,12 +18,14 @@
             <argument />
             <argument />
             <tag name="console.command" command="ekino-data-protection:encrypt"/>
+            <deprecated>The "%service_id%" service is deprecated, use symfony secrets management commands instead</deprecated>
         </service>
 
         <service id="ekino_data_protection.dependency_injection.env_var_encrypted_processor" class="Ekino\DataProtectionBundle\DependencyInjection\EnvVarEncryptedProcessor" public="false">
             <argument type="service" id="ekino_data_protection.encryptor" />
 
             <tag name="container.env_var_processor" />
+            <deprecated>The "%service_id%" service is deprecated, use symfony secrets management instead</deprecated>
         </service>
 
         <service id="ekino_data_protection.monolog.processor.gdpr" class="Ekino\DataProtectionBundle\Monolog\Processor\GdprProcessor" public="false">

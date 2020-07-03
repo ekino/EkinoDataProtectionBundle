@@ -60,11 +60,17 @@ class EkinoDataProtectionExtension extends Extension
     }
 
     /**
+     * @deprecated
      * @param array            $config
      * @param ContainerBuilder $container
      */
     private function configureEncryptCommand(array $config, ContainerBuilder $container): void
     {
+        @trigger_error(
+            'The '.__METHOD__.' method is deprecated command will be removed, use symfony secret management commands instead.',
+            E_USER_DEPRECATED
+        );
+
         $container
             ->findDefinition('ekino_data_protection.command.encryptor')
             ->replaceArgument(0, $config['method'])
