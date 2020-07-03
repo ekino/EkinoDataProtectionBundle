@@ -4,6 +4,7 @@ CHANGELOG
 master
 ------
 
+* Deprecate EnvVarEncryptedProcessor and EncryptCommand
 * Improve message in case of encryption error
 * Add command to encrypt secrets
 * Drop support for PHP 7.1

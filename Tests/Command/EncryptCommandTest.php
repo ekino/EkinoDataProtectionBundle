@@ -20,10 +20,17 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+@trigger_error(
+    'The '.__NAMESPACE__.'\EncryptCommandTest class is deprecated since command is deprecated',
+    E_USER_DEPRECATED
+);
+
 /**
  * Class EncryptCommandTest
  *
  * @author Christian Kollross <christian.kollross@ekino.com>
+ *
+ * @deprecated since EncryptCommand class is deprecated.
  */
 class EncryptCommandTest extends TestCase
 {

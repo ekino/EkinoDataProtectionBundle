@@ -17,8 +17,16 @@ use Ekino\DataProtectionBundle\Encryptor\EncryptorInterface;
 use Symfony\Component\DependencyInjection\EnvVarProcessorInterface;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 
+@trigger_error(
+    'The '.__NAMESPACE__.'\EnvVarEncryptedProcessor class is deprecated, use symfony secrets management instead',
+    E_USER_DEPRECATED
+);
+
 /**
  * @author Rémi Marseille <remi.marseille@ekino.com>
+ *
+ * @deprecated use symfony secrets instead.
+ * @see https://github.com/symfony/symfony/pull/33997
  */
 final class EnvVarEncryptedProcessor implements EnvVarProcessorInterface
 {

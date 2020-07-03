@@ -19,10 +19,18 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+@trigger_error(
+    'The '.__NAMESPACE__.'\EncryptCommand class is deprecated, use symfony secrets management commands instead',
+    E_USER_DEPRECATED
+);
+
 /**
  * Class EncryptCommand
  *
  * @author Christian Kollross <christian.kollross@ekino.com>
+ *
+ * @deprecated use symfony secrets management commands instead.
+ * @see https://github.com/symfony/symfony/pull/33997
  */
 final class EncryptCommand extends Command
 {
