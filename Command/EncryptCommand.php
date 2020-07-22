@@ -78,7 +78,7 @@ final class EncryptCommand extends Command
         $method = $input->getOption('method');
 
         if (!\in_array($method, openssl_get_cipher_methods())) {
-            throw new \InvalidArgumentException(sprintf('The method "%s" is not available. Please choose one of the following methods: %s', $method, implode(openssl_get_cipher_methods(), ', ')));
+            throw new \InvalidArgumentException(sprintf('The method "%s" is not available. Please choose one of the following methods: %s', $method, implode(', ', openssl_get_cipher_methods())));
         }
 
         $output->writeln(sprintf("<info>Encryption parameters:</info>\nText:\t\"%s\"\nSecret:\t\"%s\"\nMethod:\t\"%s\"\n", $text, $secret, $method));
