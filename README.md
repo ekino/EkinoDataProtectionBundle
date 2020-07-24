@@ -110,7 +110,11 @@ can fill in only the encrypted part of the log or a full text containing several
 In case of several encrypted logs, each decrypted result will be displayed in a 
 dedicated tab.
 
-## Decrypt your secrets at runtime
+## Decrypt your secrets at runtime (deprecated)
+
+Warning :
+``
+Ekino\DataProtectionBundle\DependencyInjection\EnvVarEncryptedProcessor`` is now deprecated in favor of built-in symfony secret feature
 
 This bundle provides a processor using the configured encryptor to decrypt a
 secret at runtime. This allows you to not reveal your secrets and easy

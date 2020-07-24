@@ -9,6 +9,7 @@ master
 * Drop support for PHP 7.1
 * Add PHP 7.4 in CI
 * Upgrade PhpUnit to 8
+* ``Ekino\DataProtectionBundle\DependencyInjection\EnvVarEncryptedProcessor`` is now deprecated in favor of built-in symfony secret feature
 
 v1.1.0
 ------
