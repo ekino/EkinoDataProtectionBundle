@@ -22,15 +22,18 @@
         "symfony/dependency-injection": "~3.4.10|^4.4",
         "symfony/form":                 "~3.3|~4.4",
         "symfony/http-kernel":          "~3.3|~4.4",
-        "symfony/translation":          "~3.3|~4.4"
+        "symfony/options-resolver":     "~3.3|~4.4",
+        "symfony/translation":          "~3.3|~4.4",
+        "symfony/validator":            "~3.3|~4.4"
     },
     "require-dev": {
-        "ekino/phpstan-banned-code":   "^0.2 || ^0.3",
-        "friendsofphp/php-cs-fixer":   "^2.12",
-        "phpstan/phpstan-phpunit":     "^0.12",
-        "phpunit/phpunit":             "^8.5",
-        "sensiolabs/security-checker": "^6.0",
-        "sonata-project/admin-bundle": "3.*"
+        "ekino/phpstan-banned-code":      "^0.2 || ^0.3",
+        "friendsofphp/php-cs-fixer":      "^2.12",
+        "phpstan/phpstan-phpunit":        "^0.12",
+        "phpunit/phpunit":                "^8.5",
+        "sensiolabs/security-checker":    "^6.0",
+        "sonata-project/admin-bundle":    "3.*",
+        "sonata-project/twig-extensions": "1.*"
     },
     "autoload": {
         "psr-4": { "Ekino\\DataProtectionBundle\\": "" },

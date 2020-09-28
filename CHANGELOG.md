@@ -9,6 +9,7 @@ master
 * Drop support for PHP 7.1
 * Add PHP 7.4 in CI
 * Upgrade PhpUnit to 8
+* Make symfony dependencies explicit, add sonata twig as dev dep & remove SonataCoreBundle occurrence
 
 v1.1.0
 ------

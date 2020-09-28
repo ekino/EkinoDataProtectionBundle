@@ -36,7 +36,9 @@ class LogsAdminTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->admin = new LogsAdmin('', '', LogsAdminController::class);
+        /** @var class-string<object> $fooClass */
+        $fooClass    = '\Foo';
+        $this->admin = new LogsAdmin('', $fooClass, LogsAdminController::class);
     }
 
     /**
