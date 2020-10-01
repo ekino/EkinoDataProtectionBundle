@@ -4,7 +4,7 @@ CHANGELOG
 master
 ------
 
-* todo...
+* Allow Symfony5
 
 v1.2.0
 ------
