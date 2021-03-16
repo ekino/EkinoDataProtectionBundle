@@ -4,7 +4,7 @@ CHANGELOG
 master
 ------
 
-* todo...
+* Switch to the new security checker
 
 v1.2.0
 ------

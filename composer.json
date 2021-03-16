@@ -31,7 +31,6 @@
         "friendsofphp/php-cs-fixer":      "^2.12",
         "phpstan/phpstan-phpunit":        "^0.12",
         "phpunit/phpunit":                "^8.5",
-        "sensiolabs/security-checker":    "^6.0",
         "sonata-project/admin-bundle":    "3.*",
         "sonata-project/twig-extensions": "1.*"
     },
