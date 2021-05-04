@@ -28,7 +28,7 @@
     },
     "require-dev": {
         "ekino/phpstan-banned-code":      "^0.2 || ^0.3",
-        "friendsofphp/php-cs-fixer":      "^2.12",
+        "friendsofphp/php-cs-fixer":      "^3.0",
         "phpstan/phpstan-phpunit":        "^0.12",
         "phpunit/phpunit":                "^8.5",
         "sonata-project/admin-bundle":    "3.*",
