@@ -5,6 +5,7 @@ master
 ------
 
 * Switch to the new security checker
+* Allow PHP 8 and Symfony 5
 
 v1.2.0
 ------
