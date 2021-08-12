@@ -8,6 +8,7 @@ master
 * Allow PHP 8 and Symfony 5
 * Add daily build for GitHub Actions
 * Fix depreciated PHP-CS rules
+* Upgrade symfony packages from 5.0 to 5.3
 
 v1.2.0
 ------
