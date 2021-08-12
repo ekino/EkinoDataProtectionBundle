@@ -7,6 +7,7 @@ master
 * Switch to the new security checker
 * Allow PHP 8 and Symfony 5
 * Add daily build for GitHub Actions
+* Fix depreciated PHP-CS rules
 
 v1.2.0
 ------
