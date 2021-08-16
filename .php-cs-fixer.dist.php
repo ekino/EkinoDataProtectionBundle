@@ -21,6 +21,8 @@ EOF;
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude('vendor')
+    // ignore EncryptorTest.php because of openssl_encrypt
+    ->notPath('Tests/Encryptor/EncryptorTest.php')
 ;
 
 $config = new PhpCsFixer\Config();

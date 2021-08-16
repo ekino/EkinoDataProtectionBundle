@@ -4,7 +4,7 @@ CHANGELOG
 master
 ------
 
-* todo...
+* Upgrade friendsofphp/php-cs-fixer
 
 v1.3.0
 ------
