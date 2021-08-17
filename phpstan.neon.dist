@@ -4,6 +4,10 @@ includes:
 	- vendor/phpstan/phpstan-phpunit/rules.neon
 
 parameters:
+	level: 5
+	paths:
+		- %rootDir%/../../.. 
+
 	excludes_analyse:
 		- %rootDir%/../../../vendor/*
 
