@@ -25,7 +25,7 @@ app-security-check: ## to check if any security issues in the PHP dependencies
 	./local-php-security-checker
 
 app-static-analysis: ## to run static analysis
-	php -dmemory_limit=-1 vendor/bin/phpstan analyze . -l 5
+	vendor/bin/phpstan analyze --memory-limit=-1
 
 app-test: ## to run unit tests
 	vendor/bin/phpunit

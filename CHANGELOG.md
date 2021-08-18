@@ -5,6 +5,7 @@ master
 ------
 
 * Upgrade friendsofphp/php-cs-fixer
+* Improve PHPStan configuration file
 
 v1.3.0
 ------
