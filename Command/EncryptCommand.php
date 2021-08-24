@@ -52,7 +52,7 @@ final class EncryptCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Encrypt a given text (like a password)')
             ->addArgument('text', null, 'Text to encrypt')

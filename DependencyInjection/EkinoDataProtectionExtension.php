@@ -28,8 +28,10 @@ class EkinoDataProtectionExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     *
+     * @param array<non-empty-array> $configs
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $configs);
@@ -48,8 +50,8 @@ class EkinoDataProtectionExtension extends Extension
     }
 
     /**
-     * @param array            $config
-     * @param ContainerBuilder $container
+     * @param array<array-key,string> $config
+     * @param ContainerBuilder        $container
      */
     private function configureEncryptor(array $config, ContainerBuilder $container): void
     {
@@ -60,8 +62,8 @@ class EkinoDataProtectionExtension extends Extension
     }
 
     /**
-     * @param array            $config
-     * @param ContainerBuilder $container
+     * @param array<array-key,string> $config
+     * @param ContainerBuilder        $container
      */
     private function configureEncryptCommand(array $config, ContainerBuilder $container): void
     {
