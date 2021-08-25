@@ -50,7 +50,9 @@ class Encryptor implements EncryptorInterface
      */
     public function encrypt(string $data): string
     {
+        /** @var int $ivSize */
         $ivSize     = openssl_cipher_iv_length($this->method);
+        /** @var string $iv */
         $iv         = openssl_random_pseudo_bytes($ivSize);
         $cipherText = openssl_encrypt($data, $this->method, $this->secret, OPENSSL_RAW_DATA, $iv);
 
@@ -67,6 +69,7 @@ class Encryptor implements EncryptorInterface
     public function decrypt(string $data): string
     {
         $data       = base64_decode($data);
+        /** @var int $ivSize */
         $ivSize     = openssl_cipher_iv_length($this->method);
         $iv         = mb_substr($data, 0, $ivSize, '8bit');
         $cipherText = mb_substr($data, $ivSize, null, '8bit');

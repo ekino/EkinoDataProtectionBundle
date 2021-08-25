@@ -6,6 +6,7 @@ master
 
 * Upgrade friendsofphp/php-cs-fixer
 * Improve PHPStan configuration file
+* Raised to PHPStan level 8
 
 v1.3.0
 ------

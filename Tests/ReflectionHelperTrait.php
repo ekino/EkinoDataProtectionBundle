@@ -13,11 +13,14 @@ declare(strict_types=1);
 
 namespace Ekino\DataProtectionBundle\Tests;
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 trait ReflectionHelperTrait
 {
     /**
-     * @param mixed $object
-     *
+     * @param mixed        $object
+     * @param string       $methodName
+     * @param MockObject[] $parameters
      * @return bool|mixed
      */
     public function invokeMethod($object, string $methodName, array $parameters = [])

@@ -4,10 +4,11 @@ includes:
 	- vendor/phpstan/phpstan-phpunit/rules.neon
 
 parameters:
-	level: 5
+	level: 8
 	paths:
-		- %rootDir%/../../.. 
-
+		- %rootDir%/../../..
+	checkGenericClassInNonGenericObjectType: false
+	checkMissingIterableValueType: false
 	excludes_analyse:
 		- %rootDir%/../../../vendor/*
 

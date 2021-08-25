@@ -76,7 +76,7 @@ class LogsAdminController extends Controller
     /**
      * @param string $content
      *
-     * @return array
+     * @return array<array-key,array>
      */
     private function getDecryptedResults(string $content): array
     {
@@ -97,10 +97,14 @@ class LogsAdminController extends Controller
     /**
      * @param string $content
      *
-     * @return array
+     * @return array<array-key,string>
      */
     private function getEncryptedResult(string $content): array
     {
-        return ['result' => $this->encryptor->encrypt(json_encode($content))];
+        $encoded = json_encode($content);
+        if (false === $encoded) {
+            $encoded = "";
+        }
+        return ['result' => $this->encryptor->encrypt($encoded)];
     }
 }
