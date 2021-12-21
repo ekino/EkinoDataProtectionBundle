@@ -52,7 +52,7 @@ final class EnvVarEncryptedProcessor implements EnvVarProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public static function getProvidedTypes()
+    public static function getProvidedTypes(): array
     {
         return [
             'ekino_encrypted' => 'string',

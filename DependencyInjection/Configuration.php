@@ -26,7 +26,7 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         // Keep compatibility with symfony/config < 4.2
         if (!method_exists(TreeBuilder::class, 'getRootNode')) {
