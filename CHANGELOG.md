@@ -4,6 +4,11 @@ CHANGELOG
 master
 ------
 
+* todo...
+
+v1.3.1
+------
+
 * Upgrade friendsofphp/php-cs-fixer
 * Improve PHPStan configuration file
 * Raised to PHPStan level 8
