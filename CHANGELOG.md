@@ -7,6 +7,8 @@ master
 * Upgrade friendsofphp/php-cs-fixer
 * Improve PHPStan configuration file
 * Raised to PHPStan level 8
+* Add PHP 8.1 in CI
+* Add native return types
 
 v1.3.0
 ------
