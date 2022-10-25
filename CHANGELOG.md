@@ -6,6 +6,7 @@ master
 
 * Drop support for PHP 7.2
 * Bump PHPStan from ^0.12 to ^1.0
+* Allow Symfony 6
 
 v1.3.1
 ------
