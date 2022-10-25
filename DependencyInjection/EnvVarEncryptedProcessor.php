@@ -40,7 +40,7 @@ final class EnvVarEncryptedProcessor implements EnvVarProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getEnv($prefix, $name, \Closure $getEnv)
+    public function getEnv(string $prefix, string $name, \Closure $getEnv): string
     {
         if ('ekino_encrypted' === $prefix) {
             return $this->encryptor->decrypt($getEnv($name));

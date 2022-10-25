@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Ekino\DataProtectionBundle\Command;
 
 use Ekino\DataProtectionBundle\Encryptor\Encryptor;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,6 +25,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author Christian Kollross <christian.kollross@ekino.com>
  */
+#[AsCommand(name: 'ekino-data-protection:encrypt')]
 final class EncryptCommand extends Command
 {
     /**
