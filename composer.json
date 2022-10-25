@@ -27,9 +27,9 @@
         "symfony/validator":            "^3.4 || ^4.4 || ^5.3"
     },
     "require-dev": {
-        "ekino/phpstan-banned-code":      "^0.3 || ^0.4",
+        "ekino/phpstan-banned-code":      "^1.0",
         "friendsofphp/php-cs-fixer":      "^3.0",
-        "phpstan/phpstan-phpunit":        "^0.12",
+        "phpstan/phpstan-phpunit":        "^1.0",
         "phpunit/phpunit":                "^8.5",
         "sonata-project/admin-bundle":    "3.*",
         "sonata-project/twig-extensions": "1.*"

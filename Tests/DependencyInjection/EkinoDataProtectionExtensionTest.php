@@ -125,7 +125,7 @@ class EkinoDataProtectionExtensionTest extends TestCase
     }
 
     /**
-     * @return \Generator[bool]
+     * @return \Generator<array<bool>>
      */
     public function getEncryptLogs(): \Generator
     {
