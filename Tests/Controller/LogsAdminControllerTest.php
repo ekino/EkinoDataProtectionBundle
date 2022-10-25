@@ -22,7 +22,6 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class LogsAdminControllerTest.
@@ -52,7 +51,7 @@ class LogsAdminControllerTest extends TestCase
             ->disableOriginalClone()
             ->disableArgumentCloning()
             ->disallowMockingUnknownTypes()
-            ->setMethods(['addFlash', 'createForm', 'get', 'renderWithExtraParams'])
+            ->onlyMethods(['addFlash', 'createForm', 'renderWithExtraParams', 'trans'])
             ->getMock();
     }
 
@@ -106,9 +105,7 @@ class LogsAdminControllerTest extends TestCase
 
         $request = $this->createMock(Request::class);
 
-        $translator = $this->createMock(TranslatorInterface::class);
-        $translator->expects($this->once())->method('trans')->willReturn('admin.logs.encrypt.error');
-        $this->controller->expects($this->once())->method('get')->with($this->equalTo('translator'))->willReturn($translator);
+        $this->controller->expects($this->once())->method('trans')->with('admin.logs.encrypt.error', [], 'EkinoDataProtectionBundle');
 
         $this->controller->decryptEncryptAction($request);
     }

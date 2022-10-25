@@ -17,7 +17,7 @@ use Ekino\DataProtectionBundle\Admin\LogsAdmin;
 use Ekino\DataProtectionBundle\Controller\LogsAdminController;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
-use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 
 /**
  * Class LogsAdminTest.
@@ -46,7 +46,7 @@ class LogsAdminTest extends TestCase
      */
     public function testConfigureRoutes(): void
     {
-        $routeCollection = $this->createMock(RouteCollection::class);
+        $routeCollection = $this->createMock(RouteCollectionInterface::class);
         $routeCollection->expects($this->once())
             ->method('add')
             ->with('decrypt_encrypt', 'decrypt-encrypt', [], [], [], '', [], ['GET', 'POST']);

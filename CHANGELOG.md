@@ -7,6 +7,8 @@ master
 * Drop support for PHP 7
 * Bump PHPStan from ^0.12 to ^1.0
 * Allow Symfony 6
+* Drop support for Symfony 3
+* Support only sonata-project/admin-bundle ^4.0 and sonata-project/twig-extensions ^2.0
 
 v1.3.1
 ------
