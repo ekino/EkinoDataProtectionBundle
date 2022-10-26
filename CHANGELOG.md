@@ -4,7 +4,7 @@ CHANGELOG
 master
 ------
 
-* Drop support for PHP 7.2
+* Drop support for PHP 7
 * Bump PHPStan from ^0.12 to ^1.0
 * Allow Symfony 6
 
