@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Ekino\DataProtectionBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 
 /**
  * Class LogsAdmin.
@@ -36,7 +36,7 @@ class LogsAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-    protected function configureRoutes(RouteCollection $collection): void
+    protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection->add('decrypt_encrypt', 'decrypt-encrypt', [], [], [], '', [], ['GET', 'POST']);
     }

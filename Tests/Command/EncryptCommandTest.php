@@ -55,9 +55,8 @@ class EncryptCommandTest extends TestCase
 
     public function testExcecute(): void
     {
-        $this->input->expects($this->at(0))->method('getArgument')->with('text')->willReturn('SomeText');
-        $this->input->expects($this->at(1))->method('getOption')->with('secret')->willReturn('theApplicationSecret');
-        $this->input->expects($this->at(2))->method('getOption')->with('method')->willReturn(self::CIPHER);
+        $this->input->expects($this->once())->method('getArgument')->with('text')->willReturn('SomeText');
+        $this->input->expects($this->exactly(2))->method('getOption')->withConsecutive(['secret'], ['method'])->willReturnOnConsecutiveCalls('theApplicationSecret', self::CIPHER);
 
         $this->output->expects($this->exactly(2))->method('writeln');
 
@@ -66,9 +65,8 @@ class EncryptCommandTest extends TestCase
 
     public function testExcecuteWithBadCipher(): void
     {
-        $this->input->expects($this->at(0))->method('getArgument')->with('text')->willReturn('SomeText');
-        $this->input->expects($this->at(1))->method('getOption')->with('secret')->willReturn('theApplicationSecret');
-        $this->input->expects($this->at(2))->method('getOption')->with('method')->willReturn('NotACipher');
+        $this->input->expects($this->once())->method('getArgument')->with('text')->willReturn('SomeText');
+        $this->input->expects($this->exactly(2))->method('getOption')->withConsecutive(['secret'], ['method'])->willReturnOnConsecutiveCalls('theApplicationSecret', 'NotACipher');
 
         $this->output->expects($this->never())->method('writeln');
 

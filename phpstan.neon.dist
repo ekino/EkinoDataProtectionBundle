@@ -9,7 +9,8 @@ parameters:
 		- %rootDir%/../../..
 	checkGenericClassInNonGenericObjectType: false
 	checkMissingIterableValueType: false
-	excludes_analyse:
+
+	excludePaths:
 		- %rootDir%/../../../vendor/*
 
 		- %rootDir%/../../../DependencyInjection/Configuration.php
