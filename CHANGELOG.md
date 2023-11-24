@@ -4,7 +4,7 @@ CHANGELOG
 master
 ------
 
-* Bump PHP version from ^8.0 to ^8.1 and configure CI with 8.1, 8.2 and 8.3
+* Bump PHP version from ^8.0 to ^8.1 and configure CI with 8.1 and 8.2
 
 v2.0.0
 ------
