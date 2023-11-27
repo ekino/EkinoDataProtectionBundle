@@ -31,7 +31,7 @@
         "ekino/phpstan-banned-code":      "^1.0",
         "friendsofphp/php-cs-fixer":      "^3.0",
         "phpstan/phpstan-phpunit":        "^1.0",
-        "phpunit/phpunit":                "^9.5",
+        "phpunit/phpunit":                "^10.4",
         "sonata-project/admin-bundle":    "^4.0",
         "sonata-project/twig-extensions": "^2.0"
     },
