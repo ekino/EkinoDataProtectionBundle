@@ -29,11 +29,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class EncryptCommand extends Command
 {
     /**
-     * {@inheritdoc}
-     */
-    protected static $defaultName = 'ekino-data-protection:encrypt';
-
-    /**
      * @var string
      */
     private $method;

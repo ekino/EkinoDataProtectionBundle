@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Ekino\DataProtectionBundle\Monolog\Processor;
 
 use Ekino\DataProtectionBundle\Encryptor\EncryptorInterface;
+use Monolog\LogRecord;
 use Monolog\Processor\ProcessorInterface;
 
 /**
@@ -21,32 +22,17 @@ use Monolog\Processor\ProcessorInterface;
  *
  * @author Rémi Marseille <remi.marseille@ekino.com>
  * @author Benoit Mazière <benoit.maziere@ekino.com>
+ * @author Rolland Csatari <rolland.csatari@ekino.com>
  */
 class GdprProcessor implements ProcessorInterface
 {
-    /**
-     * @var EncryptorInterface
-     */
-    private $encryptor;
-
-    /**
-     * GdprProcessor constructor.
-     *
-     * @param EncryptorInterface $encryptor
-     */
-    public function __construct(EncryptorInterface $encryptor)
+    public function __construct(private EncryptorInterface $encryptor)
     {
-        $this->encryptor = $encryptor;
     }
 
-    /**
-     * @param array<array-key,array> $record
-     *
-     * @return array<array-key,array>
-     */
-    public function __invoke(array $record)
+    public function __invoke(LogRecord $record): LogRecord
     {
-        foreach ($record['context'] as $key => &$val) {
+        foreach ($record->context as $key => &$val) {
             if (preg_match('#^private_#', (string) $key)) {
                 $encoded = json_encode($val);
                 if (false === $encoded) {

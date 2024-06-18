@@ -15,6 +15,8 @@ namespace Ekino\DataProtectionBundle\Tests\Monolog\Processor;
 
 use Ekino\DataProtectionBundle\Encryptor\EncryptorInterface;
 use Ekino\DataProtectionBundle\Monolog\Processor\GdprProcessor;
+use Monolog\Level;
+use Monolog\LogRecord;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,6 +24,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @author Rémi Marseille <remi.marseille@ekino.com>
  * @author Benoit Mazière <benoit.maziere@ekino.com>
+ * @author Rolland Csatari <rolland.csatari@ekino.com>
  */
 class GdprProcessorTest extends TestCase
 {
@@ -33,20 +36,24 @@ class GdprProcessorTest extends TestCase
         $encryptor = $this->createMock(EncryptorInterface::class);
         $encryptor->expects($this->once())->method('encrypt')->willReturn('encrypted_data');
 
-        $processor = new GdprProcessor($encryptor);
-
-        $this->assertSame(['context' => [
-            0              => 'numeric index',
-            'foo'          => 'bar',
-            'private_data' => 'encrypted_data',
-        ]], $processor->__invoke([
-            'context' => [
+        $record = new LogRecord(
+            new \DateTimeImmutable(),
+            'main',
+            Level::Debug,
+            'The log context includes private data.',
+            [
                 0              => 'numeric index',
                 'foo'          => 'bar',
                 'private_data' => [
                     'foo' => 'baz',
                 ],
             ],
-        ]));
+        );
+
+        $this->assertSame([
+            0              => 'numeric index',
+            'foo'          => 'bar',
+            'private_data' => 'encrypted_data',
+        ], ((new GdprProcessor($encryptor))($record))->context);
     }
 }
