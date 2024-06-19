@@ -36,24 +36,33 @@ class GdprProcessorTest extends TestCase
         $encryptor = $this->createMock(EncryptorInterface::class);
         $encryptor->expects($this->once())->method('encrypt')->willReturn('encrypted_data');
 
-        $record = new LogRecord(
-            new \DateTimeImmutable(),
+        $originalRecord = new LogRecord(
+            new \DateTimeImmutable('2024-06-18'),
             'main',
             Level::Debug,
             'The log context includes private data.',
             [
                 0              => 'numeric index',
                 'foo'          => 'bar',
-                'private_data' => [
-                    'foo' => 'baz',
-                ],
+                'private_data' => ['foo' => 'baz'],
+                'data_private' => ['foo' => 'baz'],
             ],
         );
+
+        $processedRecord = (new GdprProcessor($encryptor))($originalRecord);
+
+        $this->assertSame($originalRecord->datetime, $processedRecord->datetime);
+        $this->assertSame($originalRecord->channel, $processedRecord->channel);
+        $this->assertSame($originalRecord->level, $processedRecord->level);
+        $this->assertSame($originalRecord->message, $processedRecord->message);
+        $this->assertSame($originalRecord->extra, $processedRecord->extra);
+        $this->assertSame($originalRecord->formatted, $processedRecord->formatted);
 
         $this->assertSame([
             0              => 'numeric index',
             'foo'          => 'bar',
             'private_data' => 'encrypted_data',
-        ], ((new GdprProcessor($encryptor))($record))->context);
+            'data_private' => ['foo' => 'baz'],
+        ], $processedRecord->context);
     }
 }

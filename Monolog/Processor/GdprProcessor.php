@@ -32,16 +32,25 @@ class GdprProcessor implements ProcessorInterface
 
     public function __invoke(LogRecord $record): LogRecord
     {
-        foreach ($record->context as $key => &$val) {
-            if (preg_match('#^private_#', (string) $key)) {
-                $encoded = json_encode($val);
-                if (false === $encoded) {
-                    $encoded = "";
-                }
-                $val = $this->encryptor->encrypt($encoded);
+        $context = [];
+
+        foreach ($record->context as $key => $value) {
+            if (str_starts_with((string) $key, 'private_')) {
+                $value = json_encode($value);
+                $value = \is_string($value) ? $this->encryptor->encrypt($value) : '';
             }
+
+            $context[$key] = $value;
         }
 
-        return $record;
+        return new LogRecord(
+            $record->datetime,
+            $record->channel,
+            $record->level,
+            $record->message,
+            $context,
+            $record->extra,
+            $record->formatted
+        );
     }
 }

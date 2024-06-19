@@ -6,6 +6,13 @@ master
 
 * todo...
 
+v3.1.0
+------
+* Configure PHP 8.3 in CI
+* Fix the context readonly issue into `Monolog/Processor/GdprProcessor`
+* Update `Tests/Monolog/Processor/GdprProcessorTest.php`
+* Disable bypassReadOnly into `Ekino\DataProtectionBundle\Tests\BypassFinalHook`
+
 v3.0.0
 ------
 

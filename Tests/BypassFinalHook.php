@@ -20,6 +20,6 @@ final class BypassFinalHook implements BeforeTestHook
 {
     public function executeBeforeTest(string $test): void
     {
-        BypassFinals::enable();
+        BypassFinals::enable(bypassReadOnly: false);
     }
 }
