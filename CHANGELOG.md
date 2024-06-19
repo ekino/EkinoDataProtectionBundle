@@ -4,7 +4,18 @@ CHANGELOG
 master
 ------
 
+* todo...
+
+v3.0.0
+------
+
 * Bump PHP version from ^8.0 to ^8.1 and configure CI with 8.1 and 8.2
+* Bump Monolog version from ^1.24 || ~2.0 to ^3.6.0
+* Bump symfony/(config|console|dependency-injection|form|http-kernel|options-resolver|translation|validator) from ^4.4 || ^5.3 || ^6.0 to ^5.4 || ^6.4 || ^7.0
+* Adapt `Monolog/Processor/GdprProcessor` to the new `Monolog\Processor\ProcessorInterface`
+* Improve `Monolog/Processor/GdprProcessor` type hinting
+* Update `Tests/Monolog/Processor/GdprProcessorTest.php`
+* Update `Command/EncryptCommand.php`
 
 v2.0.0
 ------
