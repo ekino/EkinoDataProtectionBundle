@@ -46,7 +46,7 @@ final class EnvVarEncryptedProcessor implements EnvVarProcessorInterface
             return $this->encryptor->decrypt($getEnv($name));
         }
 
-        throw new RuntimeException(sprintf('Unsupported env var prefix "%s".', $prefix));
+        throw new RuntimeException(\sprintf('Unsupported env var prefix "%s".', $prefix));
     }
 
     /**

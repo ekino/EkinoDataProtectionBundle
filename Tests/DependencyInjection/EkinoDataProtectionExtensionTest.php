@@ -57,7 +57,7 @@ class EkinoDataProtectionExtensionTest extends TestCase
         try {
             $this->extension->load($configs, $this->containerBuilder);
 
-            $this->fail(sprintf('Expecting %s with message \'%s\'', InvalidConfigurationException::class, $exceptionMessage));
+            $this->fail(\sprintf('Expecting %s with message \'%s\'', InvalidConfigurationException::class, $exceptionMessage));
         } catch (InvalidConfigurationException $e) {
             $this->assertMatchesRegularExpression($exceptionMessage, $e->getMessage());
         }
