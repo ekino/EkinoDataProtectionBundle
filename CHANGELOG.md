@@ -4,7 +4,7 @@ CHANGELOG
 master
 ------
 
-* todo...
+* Force use of sprintf native function
 
 v3.1.0
 ------

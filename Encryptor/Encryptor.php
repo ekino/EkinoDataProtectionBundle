@@ -57,7 +57,7 @@ class Encryptor implements EncryptorInterface
         $cipherText = openssl_encrypt($data, $this->method, $this->secret, OPENSSL_RAW_DATA, $iv);
 
         if ($cipherText === false) {
-            throw new EncryptionException(sprintf('Unexpected failure in openssl_encrypt: %s', openssl_error_string()));
+            throw new EncryptionException(\sprintf('Unexpected failure in openssl_encrypt: %s', openssl_error_string()));
         }
 
         return base64_encode($iv.$cipherText);
@@ -76,7 +76,7 @@ class Encryptor implements EncryptorInterface
         $decrypt    = openssl_decrypt($cipherText, $this->method, $this->secret, OPENSSL_RAW_DATA, $iv);
 
         if ($decrypt === false) {
-            throw new EncryptionException(sprintf('Unexpected failure in openssl_decrypt: %s', openssl_error_string()));
+            throw new EncryptionException(\sprintf('Unexpected failure in openssl_decrypt: %s', openssl_error_string()));
         }
 
         return $decrypt;

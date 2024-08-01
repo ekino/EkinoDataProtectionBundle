@@ -85,7 +85,7 @@ class LogsAdminController extends Controller
 
         if (!empty($matches)) {
             foreach ($matches as $index => $match) {
-                $results[sprintf('%s_%d', $match[1], $index + 1)] = json_decode($this->encryptor->decrypt($match[2]), true);
+                $results[\sprintf('%s_%d', $match[1], $index + 1)] = json_decode($this->encryptor->decrypt($match[2]), true);
             }
         } else {
             $results['result'] = json_decode($this->encryptor->decrypt($content), true);
