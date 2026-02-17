@@ -5,6 +5,8 @@ master
 ------
 
 * Force use of sprintf native function
+* Remove support for PHP 8.1
+* Add PHP 8.4 and 8.5 in CI jobs
 
 v3.1.0
 ------
